@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="bg-gray-200 h-screen p-8">
+        <h1 class="text-5xl font-bold text-center">Coding Node App</h1>
+        <div class="bg-white p-8 mt-12 w-6/12 mx-auto rounded-lg">
+            <form class="space-y-6" onsubmit="createFile(event)">
+                <div class="flex flex-col"> 
+                    <label class="text-lg font-medium">Filename</label>
+                    <input name ="filename" placeholder="Enter filename" class="border p-3 rounded mt-2 focus:outline-blue" required/>
+
+                </div>
+
+                <div class="flex flex-col">
+                    <label class="text-lg font-medium">Content</label>
+                    <textarea rows="8" name ="content"  class="border p-3 rounded mt-2 focus:outline-blue" required>
+                        </textarea>
+
+                </div>
+                <button class="bg-violet-600 text-white py-3 px-8 rounded font-medium">Create</button>
+
+            </form>
+
+        </div>
+
+    </div>
+    <script>
+        function createFile(){
+            e.preventDefault()
+          const form =  e.target
+          const elements = form.elements
+          const data =JSON.stringify({
+           filename:elements.filename.value.trim() ,
+           content  :elements.content.value.trim()
+          })
+          fetch('http://localhost:8080' ,{
+            method :'POST',
+            body :data
+          })
+          .then((res)=>res.json())
+          .then((data)=>console.log(data))
+          .catch((err)=>console.log(err))
+        }
+
+    </script>
+    
+</body>
+</html>
