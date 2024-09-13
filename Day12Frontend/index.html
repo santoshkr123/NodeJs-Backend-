@@ -31,6 +31,9 @@
 
     </div>
     <script>
+        window.onload = function()=>{
+            getFilesList()
+        }
         function createFile(){
             e.preventDefault()
           const form =  e.target
@@ -47,6 +50,21 @@
           .then((data)=>console.log(data))
           .catch((err)=>console.log(err))
         }
+        function getFilesList(){
+                fetch('http://localhost:8080' ,{
+                    method : 'GET'
+
+                })
+                 .then((res)=>res.json())
+                 .then((data)=>console.log(data))
+                 .catch((err)=>console.log(err))
+
+                 
+                    
+                
+        }
+
+    
 
     </script>
     
