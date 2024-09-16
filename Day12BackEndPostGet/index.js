@@ -23,6 +23,15 @@ const server = http.createServer((req,res)=>{
 else if(method =='GET')
 {
    const file= fs.readdirSync('./storage')
+   const data = []
+   for(let file of files)
+   {
+    const content =fs.readFileSync(`./storage/${file}'utf-8`)
+    data.push({
+        filename:file,
+        content:content
+    })
+   }
    res.write(JSON.stringify(files))
    res.end()
    
